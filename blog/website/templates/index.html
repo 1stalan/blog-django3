@@ -1,1 +1,7 @@
-<h1>Blog</h1>
+{% for post in posts %}
+    <h1>{{ post.title }}</h1>
+    <h2>{{ post.sub_title }}</h1>
+    <p>
+        {{ post.content }}
+    </p>
+{% endfor %}
