@@ -8,3 +8,9 @@ def hello_blog(request):
     lista_post = Post.objects.filter(deleted=False)
     data = {"posts": lista_post}
     return render(request, 'index.html', data)
+
+
+def post_detail(request, id):
+    post = Post.objects.get(id=id)
+    data = {"post": post}
+    return render(request, 'post_detail.html', data)
