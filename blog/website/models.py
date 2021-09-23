@@ -2,10 +2,13 @@ from django.db import models
 from django.db.models.fields import CharField
 
 # Create your models here.
+
+
 class Categories(models.TextChoices):
     tech = 'TC', 'Tecnologia'
-    universe = 'CR', 'Curiosidades'
+    curiosity = 'CR', 'Curiosidades'
     gr = 'GR', 'Geral'
+
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -18,12 +21,15 @@ class Post(models.Model):
         default=Categories.gr,
     )
 
-    deleted = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
 
     def full_name(self):
         return self.title + ' ' + self.sub_title
-    
+
+    def get_categories_label(self):
+        return self.get_categories_display()
+
     full_name.admin_order_field = 'title'
