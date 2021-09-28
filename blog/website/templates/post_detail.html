@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <h3>{{ post.title }}</h3>
 <p>{{ post.sub_title }}</p>
 <span>{{ post.get_categories_label }}</span>
+<img src="{{ post.image.url }}" alt="">
+
 <ul class="actions">
     <li><a href="{% url 'blog:home' %}" class="button">Voltar</a></li>
 </ul>

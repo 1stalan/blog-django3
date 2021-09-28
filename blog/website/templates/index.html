@@ -18,11 +18,16 @@
 	<div class="row">
 		{% for post in posts %}
 		<article class="col-6 col-12-xsmall work-item">
-			<a href="{% static 'images/fulls/01.jpg' %}" class="image fit thumb"><img
+			{% if post.image %}
+				<a href="{{ post.image.url }}" class="image fit thumb"><img src="{{ post.image.url }}" alt="" /></a>
+			{% else %}
+				<a href="{% static 'images/fulls/01.jpg' %}" class="image fit thumb"><img
 					src="{% static 'images/thumbs/01.jpg' %}" alt="" /></a>
-			<h3>{{ post.title }}</h3>
-			<p>{{ post.sub_title }}</p>
-			<span>{{ post.get_categories_label }}</span>
+
+			{% endif %}
+				<h3>{{ post.title }}</h3>
+				<p>{{ post.sub_title }}</p>
+				<span>{{ post.get_categories_label }}</span>
 
 			<ul class="actions">
 				<li><a href="{% url 'blog:post_detail'  post.id %}" class="button">Leia Mais</a></li>
@@ -31,9 +36,6 @@
 		{% endfor %}
 
 	</div>
-	<ul class="actions">
-		<li><a href="#" class="button">Full Portfolio</a></li>
-	</ul>
 </section>
 
 <!-- Three -->
@@ -43,7 +45,8 @@
 		lorem semper nunc nisi lorem vulputate lorem neque lorem ipsum dolor.</p>
 	<div class="row">
 		<div class="col-8 col-12-small">
-			<form method="post" action="#">
+			<form method="post" action="{% url 'blog:save_form' %}">
+				{% csrf_token %}
 				<div class="row gtr-uniform gtr-50">
 					<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" />
 					</div>
@@ -52,10 +55,11 @@
 					<div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
 					</div>
 				</div>
+				<ul class="actions">
+					<li><input type="submit" value="Send Message" /></li>
+				</ul>
 			</form>
-			<ul class="actions">
-				<li><input type="submit" value="Send Message" /></li>
-			</ul>
+			
 		</div>
 		<div class="col-4 col-12-small">
 			<ul class="labeled-icons">

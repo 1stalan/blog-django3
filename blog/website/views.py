@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Contact
 
 # Create your views here.
 
@@ -14,3 +14,14 @@ def post_detail(request, id):
     post = Post.objects.get(id=id)
     data = {"post": post}
     return render(request, 'post_detail.html', data)
+
+
+def save_form(request):
+    name  = request.POST['name']
+    Contact.objects.create(
+        name=name,
+        email=request.POST['email'],
+        message=request.POST['message']
+    )
+    data = {"name": name}
+    return render(request, 'contact.html', data)
