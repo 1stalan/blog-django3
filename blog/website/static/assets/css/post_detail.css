@@ -1,0 +1,9 @@
+.detail-image img {
+    max-width:300px;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
