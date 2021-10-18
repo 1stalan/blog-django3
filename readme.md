@@ -37,9 +37,11 @@ Criando uma aplicação
 `python manage.py startapp "nome da aplicação"`
 
 Configurando Nginx
+
 Criar arquivo uwsgi_params no path do projeto
 
 vim uwsgi_params
+
 
 ---- file content -----
 
